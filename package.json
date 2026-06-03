@@ -4,7 +4,8 @@
   "description": "Prototype de navigateur SONSA et serveur admin de collecte IP/MAC",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "node ./server/index.js",
+    "electron": "electron .",
     "server": "node ./server/index.js",
     "dev:server": "node ./server/index.js",
     "deploy": "npm install && node ./server/index.js"
