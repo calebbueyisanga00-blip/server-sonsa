@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin SONSA - Tableau de bord</title>
+  <link rel="stylesheet" href="admin.css" />
+  <!-- Chart.js CDN (used on history page) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-title">
+        <h1>🛡️ SONSA Admin - Tableau de bord</h1>
+        <p>Suivi des PC/PHONE et de l'utilisation du navigateur SONSA</p>
+      </div>
+      <div class="header-actions">
+        <button id="refresh-btn" class="btn btn-primary">🔄 Actualiser</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Statistiques -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-content">
+          <div class="stat-label">PC/PHONE actifs</div>
+          <div class="stat-value" id="stat-devices">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tableau des appareils -->
+    <section class="table-section">
+      <h2>PC/PHONE connectés</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>📌 Machine</th>
+              <th>🌐 Adresse IP</th>
+              <th>📟 Adresse MAC</th>
+              <th>💻 Plateforme</th>
+              <th>⚡ Statut</th>
+              <th>📜 Historique</th>
+            </tr>
+          </thead>
+          <tbody id="device-table"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state hidden">
+          <p>Aucun périphérique enregistré pour le moment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>SONSA Admin Dashboard • Dernière synchronisation : <span id="sync-time">--:--:--</span></p>
+    </footer>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SONSA Navigator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-main">
+        <div class="topbar-left">
+          <div class="brand-logo">
+            <div class="logo-mark">S</div>
+            <div class="brand-text">
+              <div class="brand-name">SONSA</div>
+            </div>
+          </div>
+
+          <!-- Dropdown menu like Chrome -->
+          <div id="sonsa-menu-dropdown" class="menu-dropdown hidden">
+            <!-- Security Notification -->
+            <div class="dropdown-banner">
+              <span class="banner-icon">🛡️</span>
+              <div class="banner-text" style="text-align: left;">
+                <div class="banner-title" style="font-size: 0.8rem; font-weight: 700; color: #ef4444;">2 mots de passe compromis</div>
+                <div class="banner-desc" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 2px;">Sécurisez votre compte maintenant</div>
+              </div>
+            </div>
+
+            <!-- New Tab/Window Section -->
+            <div class="dropdown-section">
+              <div class="dropdown-item" id="menu-new-tab">
+                <span class="item-icon">➕</span>
+                <span class="item-label">Nouvel onglet</span>
+                <span class="item-shortcut">Ctrl+T</span>
+              </div>
+              <div class="dropdown-item" id="menu-new-window">
+                <span class="item-icon">🪟</span>
+                <span class="item-label">Nouvelle fenêtre</span>
+                <span class="item-shortcut">Ctrl+N</span>
+              </div>
+              <div class="dropdown-item" id="menu-incognito">
+                <span class="item-icon">🕶️</span>
+                <span class="item-label">Navigation privée</span>
+                <span class="item-shortcut">Ctrl+Maj+N</span>
+              </div>
+            </div>
+
+            <!-- Profile Banner -->
+            <div class="dropdown-section profile-section">
+              <div class="dropdown-profile-header">
+                <div class="profile-avatar-small">
+                  <svg viewBox="0 0 32 32" class="avatar-svg-small" style="width: 24px; height: 24px;">
+                    <circle cx="16" cy="16" r="16" fill="#3b82f6" />
+                    <path d="M16 8a4 4 0 100 8 4 4 0 000-8zm-8 12c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v2H8v-2z" fill="#ffffff" />
+                  </svg>
+                </div>
+                <div class="profile-info" style="display: flex; flex-direction: column; text-align: left; margin-left: 8px;">
+                  <div class="profile-name" style="font-size: 0.8rem; font-weight: 700; color: #f8fafc;">Caleb</div>
+                  <div class="profile-status" style="font-size: 0.7rem; color: #3b82f6; font-weight: 600;">Connecté</div>
+                </div>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+            </div>
+
+            <!-- Standard items -->
+            <div class="dropdown-section">
+              <div class="dropdown-item" id="menu-passwords">
+                <span class="item-icon">🔑</span>
+                <span class="item-label">Mots de passe et saisie auto</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-history-btn">
+                <span class="item-icon">🕒</span>
+                <span class="item-label">Historique</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-downloads">
+                <span class="item-icon">📥</span>
+                <span class="item-label">Téléchargements</span>
+                <span class="item-shortcut">Ctrl+J</span>
+              </div>
+              <div class="dropdown-item" id="menu-favorites-btn">
+                <span class="item-icon">⭐</span>
+                <span class="item-label">Favoris et listes</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">👥</span>
+                <span class="item-label">Groupes d'onglets</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🧩</span>
+                <span class="item-label">Extensions</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-clear-history-btn">
+                <span class="item-icon">🗑️</span>
+                <span class="item-label">Effacer les données</span>
+                <span class="item-shortcut">Ctrl+Maj+Del</span>
+              </div>
+            </div>
+
+            <!-- Zoom -->
+            <div class="dropdown-section zoom-section" style="display: flex; align-items: center; padding: 6px 16px;">
+              <span class="item-icon">🔍</span>
+              <span class="item-label" style="text-align: left;">Zoom</span>
+              <div class="zoom-controls" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+                <button type="button" id="zoom-out" class="zoom-btn">−</button>
+                <span id="zoom-level">100%</span>
+                <button type="button" id="zoom-in" class="zoom-btn">＋</button>
+                <button type="button" id="zoom-fullscreen" class="zoom-btn">⛶</button>
+              </div>
+            </div>
+
+            <!-- settings, prints and secondary list -->
+            <div class="dropdown-section" style="border-bottom: none;">
+              <div class="dropdown-item">
+                <span class="item-icon">🖨️</span>
+                <span class="item-label">Imprimer...</span>
+                <span class="item-shortcut">Ctrl+P</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🔍</span>
+                <span class="item-label">Rechercher avec Google Lens</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🌐</span>
+                <span class="item-label">Traduire...</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">✏️</span>
+                <span class="item-label">Rechercher et modifier</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-settings-btn">
+                <span class="item-icon">⚙️</span>
+                <span class="item-label">Paramètres</span>
+              </div>
+            </div>
+          </div>
+          <div class="nav-actions">
+            <button id="back-btn" title="Retour">◀</button>
+            <button id="forward-btn" title="Avancer">▶</button>
+            <button id="refresh-btn" title="Rafraîchir">⟳</button>
+            <button id="home-btn" title="Accueil">🏠</button>
+          </div>
+        </div>
+        <div class="topbar-center">
+          <form id="omnibox-form" class="omnibox-form">
+            <span class="omnibox-icon">G</span>
+            <input id="omnibox-input" type="text" placeholder="Search Google or type a URL" autocomplete="off" />
+            <button type="button" id="favorite-btn" class="omnibox-favorite-btn" title="Ajouter aux favoris">★</button>
+          </form>
+        </div>
+        <div class="topbar-right" style="position: relative;">
+          <button id="profile-btn" class="profile-btn" title="Profil utilisateur">
+            <svg viewBox="0 0 32 32" class="avatar-svg">
+              <circle cx="16" cy="16" r="16" fill="#3b82f6" />
+              <path d="M16 8a4 4 0 100 8 4 4 0 000-8zm-8 12c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v2H8v-2z" fill="#ffffff" />
+            </svg>
+          </button>
+          <button id="menu-btn" class="menu-btn" title="Personnaliser et contrôler SONSA">⋮</button>
+
+          <!-- Dropdown menu like Chrome -->
+          <div id="sonsa-menu-dropdown" class="menu-dropdown hidden">
+            <!-- Security Notification -->
+            <div class="dropdown-banner">
+              <span class="banner-icon">🛡️</span>
+              <div class="banner-text" style="text-align: left;">
+                <div class="banner-title" style="font-size: 0.8rem; font-weight: 700; color: #ef4444;">2 mots de passe compromis</div>
+                <div class="banner-desc" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 2px;">Sécurisez votre compte maintenant</div>
+              </div>
+            </div>
+
+            <!-- New Tab/Window Section -->
+            <div class="dropdown-section">
+              <div class="dropdown-item" id="menu-new-tab">
+                <span class="item-icon">➕</span>
+                <span class="item-label">Nouvel onglet</span>
+                <span class="item-shortcut">Ctrl+T</span>
+              </div>
+              <div class="dropdown-item" id="menu-new-window">
+                <span class="item-icon">🪟</span>
+                <span class="item-label">Nouvelle fenêtre</span>
+                <span class="item-shortcut">Ctrl+N</span>
+              </div>
+              <div class="dropdown-item" id="menu-incognito">
+                <span class="item-icon">🕶️</span>
+                <span class="item-label">Navigation privée</span>
+                <span class="item-shortcut">Ctrl+Maj+N</span>
+              </div>
+            </div>
+
+            <!-- Profile Banner -->
+            <div class="dropdown-section profile-section">
+              <div class="dropdown-profile-header">
+                <div class="profile-avatar-small">
+                  <svg viewBox="0 0 32 32" class="avatar-svg-small" style="width: 24px; height: 24px;">
+                    <circle cx="16" cy="16" r="16" fill="#3b82f6" />
+                    <path d="M16 8a4 4 0 100 8 4 4 0 000-8zm-8 12c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v2H8v-2z" fill="#ffffff" />
+                  </svg>
+                </div>
+                <div class="profile-info" style="display: flex; flex-direction: column; text-align: left; margin-left: 8px;">
+                  <div class="profile-name" style="font-size: 0.8rem; font-weight: 700; color: #f8fafc;">Caleb</div>
+                  <div class="profile-status" style="font-size: 0.7rem; color: #3b82f6; font-weight: 600;">Connecté</div>
+                </div>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+            </div>
+
+            <!-- Standard items -->
+            <div class="dropdown-section">
+              <div class="dropdown-item" id="menu-passwords">
+                <span class="item-icon">🔑</span>
+                <span class="item-label">Mots de passe et saisie auto</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-history-btn">
+                <span class="item-icon">🕒</span>
+                <span class="item-label">Historique</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-downloads">
+                <span class="item-icon">📥</span>
+                <span class="item-label">Téléchargements</span>
+                <span class="item-shortcut">Ctrl+J</span>
+              </div>
+              <div class="dropdown-item" id="menu-favorites-btn">
+                <span class="item-icon">⭐</span>
+                <span class="item-label">Favoris et listes</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">👥</span>
+                <span class="item-label">Groupes d'onglets</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🧩</span>
+                <span class="item-label">Extensions</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-clear-history-btn">
+                <span class="item-icon">🗑️</span>
+                <span class="item-label">Effacer les données</span>
+                <span class="item-shortcut">Ctrl+Maj+Del</span>
+              </div>
+            </div>
+
+            <!-- Zoom -->
+            <div class="dropdown-section zoom-section" style="display: flex; align-items: center; padding: 6px 16px;">
+              <span class="item-icon">🔍</span>
+              <span class="item-label" style="text-align: left;">Zoom</span>
+              <div class="zoom-controls" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+                <button type="button" id="zoom-out" class="zoom-btn">−</button>
+                <span id="zoom-level">100%</span>
+                <button type="button" id="zoom-in" class="zoom-btn">＋</button>
+                <button type="button" id="zoom-fullscreen" class="zoom-btn">⛶</button>
+              </div>
+            </div>
+
+            <!-- settings, prints and secondary list -->
+            <div class="dropdown-section" style="border-bottom: none;">
+              <div class="dropdown-item">
+                <span class="item-icon">🖨️</span>
+                <span class="item-label">Imprimer...</span>
+                <span class="item-shortcut">Ctrl+P</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🔍</span>
+                <span class="item-label">Rechercher avec Google Lens</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">🌐</span>
+                <span class="item-label">Traduire...</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="item-icon">✏️</span>
+                <span class="item-label">Rechercher et modifier</span>
+                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+              </div>
+              <div class="dropdown-item" id="menu-settings-btn">
+                <span class="item-icon">⚙️</span>
+                <span class="item-label">Paramètres</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="tabbar">
+      <div id="tab-list" class="tab-list"></div>
+      <button id="new-tab" class="new-tab" title="Nouvel onglet">＋</button>
+    </section>
+
+    <!-- Hero area similar to Chrome new tab -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-logo" id="hero-logo">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#60a5fa" />
+                <stop offset="100%" stop-color="#3b82f6" />
+              </linearGradient>
+              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#2356a6" flood-opacity="0.18" />
+              </filter>
+            </defs>
+            <g filter="url(#shadow)">
+              <path d="M32 4c-1 0-12 4-18 9-4 3-6 9-6 15 0 14 10 26 24 32 14-6 24-18 24-32 0-6-2-12-6-15-6-5-17-9-18-9z" fill="url(#g1)"/>
+              <text x="32" y="38" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="22" fill="#061025">S</text>
+            </g>
+          </svg>
+        </div>
+        <h1 class="hero-title">SONSA</h1>
+        <p class="hero-subtitle">Navigateur sécurisé</p>
+        <p class="hero-tagline">LUKA BA SANGO PE MONA BA SANGO</p>
+        <div class="hero-search-row">
+          <form id="search-form" class="hero-search-form">
+            <span class="search-icon">🔍</span>
+            <input id="search-input" type="search" placeholder="Search Google or type a URL" autocomplete="off" />
+            <span class="search-actions">
+              <button type="button" class="search-btn" title="Microphone">🎙</button>
+              <button type="button" class="search-btn" title="Settings">⚙</button>
+              <span class="search-badge">AI Mode</span>
+            </span>
+          </form>
+        </div>
+        <div class="hero-shortcuts">
+          <button class="shortcut-item">🔒 Sécurité</button>
+          <button class="shortcut-item">⭐ Favoris</button>
+          <button class="shortcut-item">🌐 Nouvelles</button>
+          <button class="shortcut-item">⚙ Paramètres</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="browser-window">
+      <!-- Start blank to keep hero clean; load only on navigation -->
+      <webview id="webview" src="about:blank" partition="persist:sonsa"></webview>
+    </main>
+
+    <div class="status-bar">
+      <span id="status">Statut : initialisation...</span>
+      <span id="device-info"></span>
+    </div>
+
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>SONSA - Paramètres & Plus</h2>
+          <button id="close-settings" class="modal-close" title="Fermer">×</button>
+        </div>
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-tab="favorites">⭐ Favoris</button>
+          <button class="modal-tab" data-tab="history">📜 Historique</button>
+          <button class="modal-tab" data-tab="settings">⚙️ Paramètres</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-tab-content active" id="favorites-tab">
+            <div id="favorites-list" class="list-container"></div>
+          </div>
+          <div class="modal-tab-content" id="history-tab">
+            <div id="history-list" class="list-container"></div>
+            <button id="clear-history" class="btn-danger">Effacer l'historique</button>
+          </div>
+          <div class="modal-tab-content" id="settings-tab">
+            <div class="setting-group">
+              <label>Page d'accueil</label>
+              <input id="home-page-input" type="text" value="https://www.google.com" />
+            </div>
+            <div class="setting-group">
+              <label>
+                <input id="auto-report" type="checkbox" checked />
+                Activer le reporting automatique
+              </label>
+            </div>
+            <button id="save-settings" class="btn-primary">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

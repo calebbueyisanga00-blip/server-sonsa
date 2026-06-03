@@ -1,0 +1,20 @@
+{
+  "name": "sonsa-browser",
+  "version": "0.1.0",
+  "description": "Prototype de navigateur SONSA et serveur admin de collecte IP/MAC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "server": "node ./server/index.js",
+    "dev:server": "node ./server/index.js",
+    "deploy": "npm install && node ./server/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.6.10"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

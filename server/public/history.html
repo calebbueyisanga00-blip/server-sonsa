@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historique - SONSA</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="history.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-title">
+        <h1>🕘 Historique de navigation</h1>
+        <p id="device-subtitle">Chargement…</p>
+      </div>
+      <div class="header-actions">
+        <button id="back-btn" class="btn btn-secondary">← Retour au tableau de bord</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Device info + stats cards -->
+    <section class="history-stats-grid" id="history-stats">
+      <div class="stat-card">
+        <div class="stat-icon">🖥️</div>
+        <div class="stat-content">
+          <div class="stat-label">Appareil</div>
+          <div class="stat-value" id="h-device-name">—</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔗</div>
+        <div class="stat-content">
+          <div class="stat-label">Total sessions</div>
+          <div class="stat-value" id="h-total-sessions">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌐</div>
+        <div class="stat-content">
+          <div class="stat-label">Pages visitées</div>
+          <div class="stat-value" id="h-total-pages">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-content">
+          <div class="stat-label">Temps total</div>
+          <div class="stat-value" id="h-total-time">0m</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Session history table -->
+    <section class="table-section history-table-section">
+      <div class="history-table-header">
+        <h2>📋 Sessions de navigation</h2>
+        <span class="session-count-badge" id="session-badge">0 sessions</span>
+      </div>
+      <div class="table-container">
+        <table id="history-table">
+          <thead>
+            <tr>
+              <th>📅 Date</th>
+              <th>🟢 Heure de connexion</th>
+              <th>🔴 Heure de déconnexion</th>
+              <th>⏱️ Durée</th>
+              <th>🌐 Sites visités</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">📭</div>
+        <p>Aucune session de navigation enregistrée pour cet appareil.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>SONSA Admin • Historique de l'appareil</p>
+  </footer>
+
+  <script src="history.js"></script>
+</body>
+</html>

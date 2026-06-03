@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SONSA Web Test</title>
+  <link rel="stylesheet" href="browser.css" />
+</head>
+<body>
+  <div class="web-shell">
+    <header>
+      <div class="brand-logo">
+        <div class="logo-mark">S</div>
+        <div>
+          <h1>SONSA Web Test</h1>
+          <p>Recherche Google par défaut et reporting automatique au serveur admin.</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Recherche instantanée</h2>
+        <form id="search-form" class="search-form">
+          <input id="search-input" type="search" placeholder="Tapez votre recherche ici..." autocomplete="off" />
+          <button type="submit">Rechercher</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Rapport automatique</h2>
+        <p>Lorsque la page se charge, le navigateur envoie automatiquement un signal au serveur admin.</p>
+        <div id="status" class="status">Statut : tentative d'envoi automatique...</div>
+      </section>
+    </main>
+  </div>
+  <script src="browser.js"></script>
+</body>
+</html>
