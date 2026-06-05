@@ -5,9 +5,57 @@ function getQueryParam(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
 
-async function loadDevices() {
+// ─── Authentication Display Helpers ──────────────────────────
+function showLoginOverlay() {
+  document.getElementById('login-overlay').classList.remove('hidden');
+}
+
+function hideLoginOverlay() {
+  document.getElementById('login-overlay').classList.add('hidden');
+}
+
+async function checkAuthentication() {
+  const token = localStorage.getItem('sonsa_admin_token');
+  if (!token) {
+    showLoginOverlay();
+    return false;
+  }
+
   try {
-    const resp = await fetch('/admin/devices');
+    const response = await fetch('/admin/verify-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token })
+    });
+    const data = await response.json();
+    if (data.success) {
+      hideLoginOverlay();
+      return true;
+    }
+    showLoginOverlay();
+    return false;
+  } catch (e) {
+    console.error('Verification failed:', e);
+    showLoginOverlay();
+    return false;
+  }
+}
+
+async function loadDevices() {
+  const token = localStorage.getItem('sonsa_admin_token');
+  try {
+    const resp = await fetch('/admin/devices', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (resp.status === 401) {
+      localStorage.removeItem('sonsa_admin_token');
+      showLoginOverlay();
+      return [];
+    }
+
     const data = await resp.json();
     if (data.success) return data.devices || [];
   } catch (e) {
@@ -128,6 +176,45 @@ function renderStats(device, sessions) {
     totalSec += Math.round(durationMs / 1000);
   });
   document.getElementById('h-total-time').textContent = fmtDuration(totalSec);
+
+  historyState.device = device;
+  historyState.sessions = sessions;
+  historyState.activeSessionIndex = online && sessions.length > 0 ? 0 : -1;
+}
+
+function updateLiveTotals() {
+  if (!historyState.device || historyState.sessions.length === 0) return;
+
+  const online = isDeviceOnline(historyState.device);
+  const now = Date.now();
+  let totalSec = 0;
+
+  historyState.sessions.forEach((s, idx) => {
+    const durationMs = (idx === historyState.activeSessionIndex && online)
+      ? now - s.start.getTime()
+      : s.end.getTime() - s.start.getTime();
+    totalSec += Math.max(0, Math.round(durationMs / 1000));
+  });
+
+  const totalTimeEl = document.getElementById('h-total-time');
+  if (totalTimeEl) {
+    totalTimeEl.textContent = fmtDuration(totalSec);
+  }
+
+  if (online && historyState.activeSessionIndex >= 0) {
+    const activeRow = document.querySelector(`tr[data-session-index="${historyState.activeSessionIndex}"]`);
+    if (activeRow) {
+      const durationCell = activeRow.querySelector('td:nth-child(4) span');
+      if (durationCell) {
+        const currentDuration = Math.max(0, Math.round((now - historyState.sessions[historyState.activeSessionIndex].start.getTime()) / 1000));
+        durationCell.textContent = fmtDuration(currentDuration);
+      }
+      const disconnectCell = activeRow.querySelector('td:nth-child(3)');
+      if (disconnectCell && disconnectCell.textContent.trim() !== 'En cours') {
+        disconnectCell.innerHTML = '<span class="status-active">En cours</span>';
+      }
+    }
+  }
 }
 
 // ─── Render the session table ────────────────────────────────
@@ -179,19 +266,15 @@ function renderSessionTable(device, sessions) {
     const durationClass = durationSec < 60 ? 'duration-badge short' : 'duration-badge';
     const durationHTML = `<span class="${durationClass}">${fmtDuration(durationSec)}</span>`;
 
-    // Sites – show unique domains as pills (max 4, then "+N")
-    const uniqueDomains = [...new Set(session.urls.map(extractDomain).filter(Boolean))];
-    const MAX_PILLS = 4;
-    let sitesHTML = '<div class="sites-cell">';
-    if (uniqueDomains.length > 0) {
-      uniqueDomains.slice(0, MAX_PILLS).forEach(domain => {
-        sitesHTML += `<span class="site-pill" title="${domain}">${domain}</span>`;
+    // Sites – show unique URLs as clickable links with line-break styling
+    const uniqueUrls = [...new Set(session.urls.filter(Boolean))];
+    let sitesHTML = '<div class="sites-cell" style="display: flex; flex-direction: column; gap: 8px; max-width: 600px; word-break: break-all;">';
+    if (uniqueUrls.length > 0) {
+      uniqueUrls.forEach(url => {
+        sitesHTML += `<a href="${url}" target="_blank" class="history-url-link" style="color: #2563eb; text-decoration: none; font-size: 0.85rem; transition: color 0.2s;" onmouseover="this.style.color='#1d4ed8'; this.style.textDecoration='underline';" onmouseout="this.style.color='#2563eb'; this.style.textDecoration='none';">${url}</a>`;
       });
-      if (uniqueDomains.length > MAX_PILLS) {
-        sitesHTML += `<span class="more-sites">+${uniqueDomains.length - MAX_PILLS}</span>`;
-      }
     } else {
-      sitesHTML += '<span style="color: #94a3b8;">Aucun</span>';
+      sitesHTML += '<span style="color: #94a3b8; font-style: italic;">Aucune navigation</span>';
     }
     sitesHTML += '</div>';
 
@@ -202,12 +285,50 @@ function renderSessionTable(device, sessions) {
       <td>${durationHTML}</td>
       <td>${sitesHTML}</td>
     `;
+    row.dataset.sessionIndex = idx;
     tbody.appendChild(row);
   });
 }
 
-// ─── Init ────────────────────────────────────────────────────
+// ─── State for live updates ─────────────────────────────────
+const historyState = {
+  device: null,
+  sessions: [],
+  activeSessionIndex: -1
+};
+let refreshTimer = null;
+let liveUpdateTimer = null;
+
 async function init() {
+  const loginForm = document.getElementById('login-form');
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const password = document.getElementById('login-password').value;
+    const errorEl = document.getElementById('login-error');
+    errorEl.classList.add('hidden');
+
+    try {
+      const response = await fetch('/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        localStorage.setItem('sonsa_admin_token', data.token);
+        hideLoginOverlay();
+        document.getElementById('login-password').value = '';
+        await refreshHistory();
+      } else {
+        errorEl.textContent = data.error || 'Erreur de connexion';
+        errorEl.classList.remove('hidden');
+      }
+    } catch (err) {
+      errorEl.textContent = 'Erreur réseau';
+      errorEl.classList.remove('hidden');
+    }
+  });
+
   const id = getQueryParam('id');
   const subtitleEl = document.getElementById('device-subtitle');
 
@@ -217,19 +338,34 @@ async function init() {
   }
 
   subtitleEl.textContent = 'Chargement des données…';
-  await refreshHistory();
 
-  refreshTimer = setInterval(refreshHistory, 1000);
+  const authenticated = await checkAuthentication();
+  if (authenticated) {
+    await refreshHistory();
+    refreshTimer = setInterval(refreshHistory, 5000);
+    liveUpdateTimer = setInterval(updateLiveTotals, 1000);
+  }
 }
 
-let refreshTimer = null;
 async function refreshHistory() {
+  const authenticated = await checkAuthentication();
+  if (!authenticated) {
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+    return;
+  }
+
   const id = getQueryParam('id');
   const subtitleEl = document.getElementById('device-subtitle');
   if (!id) return;
 
   const devices = await loadDevices();
-  const device = devices.find(d => (d.id || d.hostname) === id);
+  const device = devices.find(d => {
+    const deviceId = d.id || d.deviceId || d.hostname;
+    return deviceId === id;
+  });
 
   if (!device) {
     subtitleEl.textContent = 'Appareil non trouvé';

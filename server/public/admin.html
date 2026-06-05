@@ -16,6 +16,8 @@
         <p>Suivi des PC/PHONE et de l'utilisation du navigateur SONSA</p>
       </div>
       <div class="header-actions">
+        <button id="change-pwd-btn" class="btn btn-secondary">🔑 Mot de passe</button>
+        <button id="logout-btn" class="btn btn-secondary">🚪 Déconnexion</button>
         <button id="refresh-btn" class="btn btn-primary">🔄 Actualiser</button>
       </div>
     </div>
@@ -25,10 +27,24 @@
     <!-- Statistiques -->
     <section class="stats-grid">
       <div class="stat-card">
-        <div class="stat-icon">📊</div>
+        <div class="stat-icon">💻</div>
         <div class="stat-content">
           <div class="stat-label">PC/PHONE actifs</div>
           <div class="stat-value" id="stat-devices">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌐</div>
+        <div class="stat-content">
+          <div class="stat-label">Plateforme dominante</div>
+          <div class="stat-value" id="stat-platform">-</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-content">
+          <div class="stat-label">Dernière synchronisation</div>
+          <div class="stat-value" id="sync-time">--:--:--</div>
         </div>
       </div>
     </section>
@@ -41,6 +57,7 @@
           <thead>
             <tr>
               <th>📌 Machine</th>
+              <th>👤 Utilisateur (Email)</th>
               <th>🌐 Adresse IP</th>
               <th>📟 Adresse MAC</th>
               <th>💻 Plateforme</th>
@@ -61,6 +78,47 @@
       <p>SONSA Admin Dashboard • Dernière synchronisation : <span id="sync-time">--:--:--</span></p>
     </footer>
   </main>
+
+  <!-- Login overlay -->
+  <div id="login-overlay" class="login-overlay hidden">
+    <div class="login-card">
+      <div class="login-logo">S</div>
+      <h2>Connexion Admin SONSA</h2>
+      <p>Entrez le mot de passe administrateur pour accéder au tableau de bord.</p>
+      <form id="login-form">
+        <div class="form-group">
+          <input type="password" id="login-password" placeholder="Mot de passe" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+        <p id="login-error" class="error-text hidden"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div id="password-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🔒 Modifier le mot de passe admin</h2>
+        <button id="close-password-modal" class="modal-close" title="Fermer">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="password-form">
+          <div class="setting-group">
+            <label for="old-password">Ancien mot de passe</label>
+            <input type="password" id="old-password" required />
+          </div>
+          <div class="setting-group">
+            <label for="new-password">Nouveau mot de passe</label>
+            <input type="password" id="new-password" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Enregistrer le nouveau mot de passe</button>
+          <p id="password-error" class="error-text hidden"></p>
+          <p id="password-success" class="success-text hidden">Mot de passe modifié avec succès ! Déconnexion...</p>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <script src="admin.js"></script>
 </body>

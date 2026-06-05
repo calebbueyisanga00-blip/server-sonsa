@@ -17,131 +17,6 @@
               <div class="brand-name">SONSA</div>
             </div>
           </div>
-
-          <!-- Dropdown menu like Chrome -->
-          <div id="sonsa-menu-dropdown" class="menu-dropdown hidden">
-            <!-- Security Notification -->
-            <div class="dropdown-banner">
-              <span class="banner-icon">🛡️</span>
-              <div class="banner-text" style="text-align: left;">
-                <div class="banner-title" style="font-size: 0.8rem; font-weight: 700; color: #ef4444;">2 mots de passe compromis</div>
-                <div class="banner-desc" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 2px;">Sécurisez votre compte maintenant</div>
-              </div>
-            </div>
-
-            <!-- New Tab/Window Section -->
-            <div class="dropdown-section">
-              <div class="dropdown-item" id="menu-new-tab">
-                <span class="item-icon">➕</span>
-                <span class="item-label">Nouvel onglet</span>
-                <span class="item-shortcut">Ctrl+T</span>
-              </div>
-              <div class="dropdown-item" id="menu-new-window">
-                <span class="item-icon">🪟</span>
-                <span class="item-label">Nouvelle fenêtre</span>
-                <span class="item-shortcut">Ctrl+N</span>
-              </div>
-              <div class="dropdown-item" id="menu-incognito">
-                <span class="item-icon">🕶️</span>
-                <span class="item-label">Navigation privée</span>
-                <span class="item-shortcut">Ctrl+Maj+N</span>
-              </div>
-            </div>
-
-            <!-- Profile Banner -->
-            <div class="dropdown-section profile-section">
-              <div class="dropdown-profile-header">
-                <div class="profile-avatar-small">
-                  <svg viewBox="0 0 32 32" class="avatar-svg-small" style="width: 24px; height: 24px;">
-                    <circle cx="16" cy="16" r="16" fill="#3b82f6" />
-                    <path d="M16 8a4 4 0 100 8 4 4 0 000-8zm-8 12c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v2H8v-2z" fill="#ffffff" />
-                  </svg>
-                </div>
-                <div class="profile-info" style="display: flex; flex-direction: column; text-align: left; margin-left: 8px;">
-                  <div class="profile-name" style="font-size: 0.8rem; font-weight: 700; color: #f8fafc;">Caleb</div>
-                  <div class="profile-status" style="font-size: 0.7rem; color: #3b82f6; font-weight: 600;">Connecté</div>
-                </div>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-            </div>
-
-            <!-- Standard items -->
-            <div class="dropdown-section">
-              <div class="dropdown-item" id="menu-passwords">
-                <span class="item-icon">🔑</span>
-                <span class="item-label">Mots de passe et saisie auto</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item" id="menu-history-btn">
-                <span class="item-icon">🕒</span>
-                <span class="item-label">Historique</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item" id="menu-downloads">
-                <span class="item-icon">📥</span>
-                <span class="item-label">Téléchargements</span>
-                <span class="item-shortcut">Ctrl+J</span>
-              </div>
-              <div class="dropdown-item" id="menu-favorites-btn">
-                <span class="item-icon">⭐</span>
-                <span class="item-label">Favoris et listes</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item">
-                <span class="item-icon">👥</span>
-                <span class="item-label">Groupes d'onglets</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item">
-                <span class="item-icon">🧩</span>
-                <span class="item-label">Extensions</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item" id="menu-clear-history-btn">
-                <span class="item-icon">🗑️</span>
-                <span class="item-label">Effacer les données</span>
-                <span class="item-shortcut">Ctrl+Maj+Del</span>
-              </div>
-            </div>
-
-            <!-- Zoom -->
-            <div class="dropdown-section zoom-section" style="display: flex; align-items: center; padding: 6px 16px;">
-              <span class="item-icon">🔍</span>
-              <span class="item-label" style="text-align: left;">Zoom</span>
-              <div class="zoom-controls" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
-                <button type="button" id="zoom-out" class="zoom-btn">−</button>
-                <span id="zoom-level">100%</span>
-                <button type="button" id="zoom-in" class="zoom-btn">＋</button>
-                <button type="button" id="zoom-fullscreen" class="zoom-btn">⛶</button>
-              </div>
-            </div>
-
-            <!-- settings, prints and secondary list -->
-            <div class="dropdown-section" style="border-bottom: none;">
-              <div class="dropdown-item">
-                <span class="item-icon">🖨️</span>
-                <span class="item-label">Imprimer...</span>
-                <span class="item-shortcut">Ctrl+P</span>
-              </div>
-              <div class="dropdown-item">
-                <span class="item-icon">🔍</span>
-                <span class="item-label">Rechercher avec Google Lens</span>
-              </div>
-              <div class="dropdown-item">
-                <span class="item-icon">🌐</span>
-                <span class="item-label">Traduire...</span>
-              </div>
-              <div class="dropdown-item">
-                <span class="item-icon">✏️</span>
-                <span class="item-label">Rechercher et modifier</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
-              </div>
-              <div class="dropdown-item" id="menu-settings-btn">
-                <span class="item-icon">⚙️</span>
-                <span class="item-label">Paramètres</span>
-              </div>
-            </div>
-          </div>
           <div class="nav-actions">
             <button id="back-btn" title="Retour">◀</button>
             <button id="forward-btn" title="Avancer">▶</button>
@@ -156,7 +31,7 @@
             <button type="button" id="favorite-btn" class="omnibox-favorite-btn" title="Ajouter aux favoris">★</button>
           </form>
         </div>
-        <div class="topbar-right" style="position: relative;">
+        <div class="topbar-right">
           <button id="profile-btn" class="profile-btn" title="Profil utilisateur">
             <svg viewBox="0 0 32 32" class="avatar-svg">
               <circle cx="16" cy="16" r="16" fill="#3b82f6" />
@@ -164,19 +39,19 @@
             </svg>
           </button>
           <button id="menu-btn" class="menu-btn" title="Personnaliser et contrôler SONSA">⋮</button>
+          <button id="theme-toggle" class="theme-toggle" title="Changer de thème">🌓</button>
+          <button id="admin-btn" class="admin-btn" title="Admin">🛠️</button>
 
           <!-- Dropdown menu like Chrome -->
           <div id="sonsa-menu-dropdown" class="menu-dropdown hidden">
-            <!-- Security Notification -->
             <div class="dropdown-banner">
               <span class="banner-icon">🛡️</span>
-              <div class="banner-text" style="text-align: left;">
-                <div class="banner-title" style="font-size: 0.8rem; font-weight: 700; color: #ef4444;">2 mots de passe compromis</div>
-                <div class="banner-desc" style="font-size: 0.72rem; color: #cbd5e1; margin-top: 2px;">Sécurisez votre compte maintenant</div>
+              <div class="banner-text">
+                <div class="banner-title">2 mots de passe compromis</div>
+                <div class="banner-desc">Sécurisez votre compte maintenant</div>
               </div>
             </div>
 
-            <!-- New Tab/Window Section -->
             <div class="dropdown-section">
               <div class="dropdown-item" id="menu-new-tab">
                 <span class="item-icon">➕</span>
@@ -195,34 +70,32 @@
               </div>
             </div>
 
-            <!-- Profile Banner -->
             <div class="dropdown-section profile-section">
               <div class="dropdown-profile-header">
                 <div class="profile-avatar-small">
-                  <svg viewBox="0 0 32 32" class="avatar-svg-small" style="width: 24px; height: 24px;">
+                  <svg viewBox="0 0 32 32" class="avatar-svg-small">
                     <circle cx="16" cy="16" r="16" fill="#3b82f6" />
                     <path d="M16 8a4 4 0 100 8 4 4 0 000-8zm-8 12c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6v2H8v-2z" fill="#ffffff" />
                   </svg>
                 </div>
-                <div class="profile-info" style="display: flex; flex-direction: column; text-align: left; margin-left: 8px;">
-                  <div class="profile-name" style="font-size: 0.8rem; font-weight: 700; color: #f8fafc;">Caleb</div>
-                  <div class="profile-status" style="font-size: 0.7rem; color: #3b82f6; font-weight: 600;">Connecté</div>
+                <div class="profile-info">
+                  <div class="profile-name">Caleb</div>
+                  <div class="profile-status">Connecté</div>
                 </div>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
             </div>
 
-            <!-- Standard items -->
             <div class="dropdown-section">
               <div class="dropdown-item" id="menu-passwords">
                 <span class="item-icon">🔑</span>
                 <span class="item-label">Mots de passe et saisie auto</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item" id="menu-history-btn">
                 <span class="item-icon">🕒</span>
                 <span class="item-label">Historique</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item" id="menu-downloads">
                 <span class="item-icon">📥</span>
@@ -232,17 +105,17 @@
               <div class="dropdown-item" id="menu-favorites-btn">
                 <span class="item-icon">⭐</span>
                 <span class="item-label">Favoris et listes</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item">
                 <span class="item-icon">👥</span>
                 <span class="item-label">Groupes d'onglets</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item">
                 <span class="item-icon">🧩</span>
                 <span class="item-label">Extensions</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item" id="menu-clear-history-btn">
                 <span class="item-icon">🗑️</span>
@@ -251,11 +124,10 @@
               </div>
             </div>
 
-            <!-- Zoom -->
-            <div class="dropdown-section zoom-section" style="display: flex; align-items: center; padding: 6px 16px;">
+            <div class="dropdown-section zoom-section">
               <span class="item-icon">🔍</span>
-              <span class="item-label" style="text-align: left;">Zoom</span>
-              <div class="zoom-controls" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+              <span class="item-label">Zoom</span>
+              <div class="zoom-controls">
                 <button type="button" id="zoom-out" class="zoom-btn">−</button>
                 <span id="zoom-level">100%</span>
                 <button type="button" id="zoom-in" class="zoom-btn">＋</button>
@@ -263,8 +135,7 @@
               </div>
             </div>
 
-            <!-- settings, prints and secondary list -->
-            <div class="dropdown-section" style="border-bottom: none;">
+            <div class="dropdown-section no-border-bottom">
               <div class="dropdown-item">
                 <span class="item-icon">🖨️</span>
                 <span class="item-label">Imprimer...</span>
@@ -281,7 +152,7 @@
               <div class="dropdown-item">
                 <span class="item-icon">✏️</span>
                 <span class="item-label">Rechercher et modifier</span>
-                <span class="profile-arrow" style="margin-left: auto; color: #475569; font-size: 0.72rem;">❯</span>
+                <span class="profile-arrow">❯</span>
               </div>
               <div class="dropdown-item" id="menu-settings-btn">
                 <span class="item-icon">⚙️</span>
@@ -298,8 +169,21 @@
       <button id="new-tab" class="new-tab" title="Nouvel onglet">＋</button>
     </section>
 
-    <!-- Hero area similar to Chrome new tab -->
-    <section class="hero">
+    <div class="main-content">
+      <aside class="left-sidebar" id="left-sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">📰 Actualités</div>
+          <button id="toggle-news-btn" class="sidebar-toggle" title="Réduire/étendre le menu">≡</button>
+        </div>
+        <div class="news-feed-section">
+          <h3 id="news-title">📰 Actualités pour vous</h3>
+          <div class="news-container" id="news-container"></div>
+        </div>
+      </aside>
+
+      <div class="content-panel">
+        <!-- Hero area similar to Chrome new tab -->
+        <section class="hero">
       <div class="hero-content">
         <div class="hero-logo" id="hero-logo">
           <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -326,18 +210,32 @@
             <span class="search-icon">🔍</span>
             <input id="search-input" type="search" placeholder="Search Google or type a URL" autocomplete="off" />
             <span class="search-actions">
-              <button type="button" class="search-btn" title="Microphone">🎙</button>
-              <button type="button" class="search-btn" title="Settings">⚙</button>
-              <span class="search-badge">AI Mode</span>
+              <button type="button" class="search-btn" id="voice-search-btn" title="Recherche vocale">🎙</button>
+              <button type="button" class="search-btn" id="hero-settings-btn" title="Paramètres">⚙</button>
+              <span class="search-badge" id="ai-mode-btn" style="cursor: pointer;">Assistant</span>
             </span>
           </form>
         </div>
-        <div class="hero-shortcuts">
-          <button class="shortcut-item">🔒 Sécurité</button>
-          <button class="shortcut-item">⭐ Favoris</button>
-          <button class="shortcut-item">🌐 Nouvelles</button>
-          <button class="shortcut-item">⚙ Paramètres</button>
+
+        <!-- Search Engines Selection -->
+        <div class="search-engines-container" id="search-engines">
+          <button type="button" class="engine-pill active" data-engine="google" data-url="https://www.google.com/search?q=">
+            <span class="engine-icon">🔍</span> Google
+          </button>
+          <button type="button" class="engine-pill" data-engine="bing" data-url="https://www.bing.com/search?q=">
+            <span class="engine-icon">🌐</span> Bing
+          </button>
+          <button type="button" class="engine-pill" data-engine="yahoo" data-url="https://search.yahoo.com/search?p=">
+            <span class="engine-icon">🟣</span> Yahoo
+          </button>
+          <button type="button" class="engine-pill" data-engine="duckduckgo" data-url="https://duckduckgo.com/?q=">
+            <span class="engine-icon">🦆</span> DuckDuckGo
+          </button>
+          <button type="button" class="engine-pill" data-engine="ecosia" data-url="https://www.ecosia.org/search?q=">
+            <span class="engine-icon">🌳</span> Ecosia
+          </button>
         </div>
+
       </div>
     </section>
 
@@ -345,6 +243,35 @@
       <!-- Start blank to keep hero clean; load only on navigation -->
       <webview id="webview" src="about:blank" partition="persist:sonsa"></webview>
     </main>
+    </div>
+    <button id="news-open-stub" class="news-open-stub hidden" title="Actualités">Actualité</button>
+    <button id="assistant-open-stub" class="assistant-open-stub hidden" title="Assistant IA">Assistant</button>
+  </div>
+
+    <div id="ai-sidebar" class="ai-sidebar hidden">
+      <div class="ai-sidebar-header">
+        <div class="ai-sidebar-title">
+          <span class="ai-icon">🤖</span>
+          <h3 id="ai-chatbot-title">Chatbot IA SONSA</h3>
+        </div>
+        <button id="close-ai-sidebar" class="ai-close-btn" title="Fermer">✕</button>
+      </div>
+      <div class="ai-chat-messages" id="ai-chat-messages">
+        <div class="ai-message assistant" id="ai-welcome-msg">
+          Bonjour ! Je suis l'assistant IA de SONSA. Comment puis-je vous aider aujourd'hui ?
+        </div>
+      </div>
+      <div class="ai-suggestions" id="ai-suggestions">
+        <button class="ai-suggest-btn" data-query="propose des suggestions de recherche" id="ai-btn-suggest">💡 Suggestions</button>
+        <button class="ai-suggest-btn" data-query="donne-moi des liens utiles" id="ai-btn-links">🔗 Liens utiles</button>
+        <button class="ai-suggest-btn" data-query="montre-moi des images" id="ai-btn-images">🖼️ Images</button>
+        <button class="ai-suggest-btn" data-query="télécharger des documents" id="ai-btn-docs">📄 Documents</button>
+      </div>
+      <form id="ai-chat-form" class="ai-chat-form">
+        <input type="text" id="ai-chat-input" placeholder="Posez une question..." autocomplete="off" />
+        <button type="submit" class="ai-send-btn">➔</button>
+      </form>
+    </div>
 
     <div class="status-bar">
       <span id="status">Statut : initialisation...</span>
@@ -372,19 +299,86 @@
           </div>
           <div class="modal-tab-content" id="settings-tab">
             <div class="setting-group">
-              <label>Page d'accueil</label>
+              <label for="home-page-input" id="setting-lbl-homepage">Page d'accueil</label>
               <input id="home-page-input" type="text" value="https://www.google.com" />
             </div>
+
+            <div class="setting-group">
+              <label for="language-select" id="setting-lbl-lang">Langue du navigateur</label>
+              <select id="language-select" class="setting-select">
+                <option value="FR">FRANCAIS</option>
+                <option value="EN">ANGLAIS</option>
+                <option value="LN">LINGALA</option>
+                <option value="KG">KIKONGO</option>
+                <option value="SW">SWAHILI</option>
+                <option value="LU">TSHILUBA</option>
+                <option value="PT">PORTUGAIS</option>
+                <option value="ES">ESPAGNOL</option>
+                <option value="ZH">CHINOIS</option>
+                <option value="HI">INDIEN</option>
+              </select>
+            </div>
+
+            <div class="setting-group">
+              <label for="theme-select" id="setting-lbl-theme">Thème visuel</label>
+              <select id="theme-select" class="setting-select">
+                <option value="dark">Sombre (Glassmorphic)</option>
+                <option value="light">Clair (Standard)</option>
+                <option value="ocean">Bleu Océan</option>
+                <option value="emerald">Émeraude</option>
+                <option value="sunset">Crépuscule</option>
+              </select>
+            </div>
+
+            <div class="setting-group">
+              <label id="setting-lbl-update">Mise à jour du système</label>
+              <div class="update-section">
+                <span id="current-version-lbl">Version actuelle : 0.1.0</span>
+                <button type="button" id="check-update-btn" class="btn btn-secondary">Vérifier les mises à jour</button>
+                <div id="update-progress-container" class="update-progress-container hidden">
+                  <div class="progress-bar-wrapper">
+                    <div id="update-progress-bar" class="progress-bar-fill"></div>
+                  </div>
+                  <span id="update-status-txt">Téléchargement : 0%</span>
+                </div>
+              </div>
+            </div>
+
             <div class="setting-group">
               <label>
                 <input id="auto-report" type="checkbox" checked />
-                Activer le reporting automatique
+                <span id="setting-lbl-autoreport">Activer le reporting automatique</span>
               </label>
             </div>
             <button id="save-settings" class="btn-primary">Enregistrer</button>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- First-time email connection overlay -->
+  <div id="email-setup-overlay" class="email-setup-overlay hidden">
+    <div class="email-setup-card">
+      <div class="email-setup-logo">S</div>
+      <h2 id="email-setup-title">Bienvenue sur SONSA</h2>
+      <p id="email-setup-desc">Pour configurer votre navigateur pour la première fois, veuillez connecter votre adresse e-mail. Cette adresse sera enregistrée pour le suivi d'utilisation.</p>
+      <form id="email-setup-form">
+        <input type="email" id="email-setup-input" placeholder="Ex: caleb@example.com" required />
+        <button type="submit" id="email-setup-btn" class="btn btn-primary btn-block">Connecter mon compte</button>
+        <button type="button" id="email-create-btn" class="btn btn-secondary btn-block">Créer un compte</button>
+        <button type="button" id="email-skip-btn" class="btn btn-link btn-block">Passer</button>
+        <p id="email-setup-error" class="error-text hidden"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Voice recognition indicator -->
+  <div id="voice-overlay" class="voice-overlay hidden">
+    <div class="voice-card">
+      <div class="voice-pulse-circle">🎙️</div>
+      <p id="voice-status">Écoute en cours... Parlez maintenant</p>
+      <button type="button" id="cancel-voice-btn" class="btn btn-danger">Annuler</button>
     </div>
   </div>
 
